@@ -1,8 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    int hp;
+    [HideInInspector] public LinkedListNode<GameObject> nodeInManager;
+    [HideInInspector] public EnemyManager enemyManager;
+
+    [SerializeField] int maxHp;
+    int currentHp;
     [SerializeField] float speed;
     Vector2 nextPos;
     int posIndex = 0;
@@ -10,9 +15,26 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        
         map = GameObject.FindAnyObjectByType<Map>();
+        currentHp = maxHp;
         GetNextPos();
+    }
+
+    public void GetDamage(int damage)
+    {
+        currentHp -= damage;
+        Debug.Log("Enemy " + gameObject.name + " " + currentHp + "/" + maxHp);
+        if (currentHp <= 0)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+        enemyManager.enemies.Remove(nodeInManager);
+        Destroy(gameObject);
+        Debug.Log("Enemy " + gameObject.name + " destroyed");
     }
 
     void GetNextPos()
@@ -20,7 +42,7 @@ public class Enemy : MonoBehaviour
         nextPos = map.GetNextPosFrom(posIndex);
         if (nextPos == Vector2.negativeInfinity)
         {
-            // TODO delete Enemy and get dmg
+            // TODO delete Enemy and give dmg
             return;
         }
         posIndex++;
