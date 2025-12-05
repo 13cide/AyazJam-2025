@@ -22,7 +22,6 @@ public class Tower : MonoBehaviour
         attackZone.transform.localScale = new Vector3(range, range, 1);
         enemyManager = GameObject.FindAnyObjectByType<EnemyManager>();
         InvokeRepeating(nameof(FindTarget), 0f, 0.25f);
-        StartCoroutine(AttackRoutine());
     }
 
     public void Placed()
@@ -33,7 +32,7 @@ public class Tower : MonoBehaviour
         renderer.color = color;
 
         attackZone.SetActive(false);
-
+    StartCoroutine(AttackRoutine());
         isPlaced = true;
 
     }
@@ -65,7 +64,7 @@ public class Tower : MonoBehaviour
     }
 
     void FindTarget() {
-        // if (target != null && Vector2.Distance(transform.position, target.transform.position) <= attackRange) return;
+        if (target != null && Vector2.Distance(transform.position, target.transform.position) <= attackRange) return;
 
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
@@ -78,10 +77,6 @@ public class Tower : MonoBehaviour
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
             }
-        }
-        Debug.Log("Nearest enemy: " + (nearestEnemy != null ? nearestEnemy.name : "None") + " at distance " + shortestDistance);
-        if (shortestDistance >= 10f) {
-            Debug.Log("Attack range:");
         }
         if (shortestDistance <= attackRange)
         {
