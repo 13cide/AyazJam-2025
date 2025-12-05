@@ -791,7 +791,7 @@ MonoBehaviour:
   grid: {fileID: 1291742319}
   groundTilemap: {fileID: 1224094448}
   pathTilemap: {fileID: 1246403681}
-  towerPrefab: {fileID: 1222644065889445423, guid: 7ae709ec8f7ce6a4d90119e774125270, type: 3}
+  towerPrefab: {fileID: 5686779107410919138, guid: 5f2abece326d1a14b9463178fc340795, type: 3}
 --- !u!4 &1064607269
 Transform:
   m_ObjectHideFlags: 0

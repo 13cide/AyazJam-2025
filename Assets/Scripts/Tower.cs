@@ -6,15 +6,15 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
 
-    [SerializeField] float attackRange;
-    [SerializeField] GameObject attackZone;
-    [SerializeField] float attackCooldown = 1f;
-    [SerializeField] int damage = 1;
-    EnemyManager enemyManager;
+    [SerializeField] protected float attackRange;
+    [SerializeField] protected GameObject attackZone;
+    [SerializeField] protected float attackCooldown = 1f;
+    [SerializeField] protected int damage = 1;
+    protected EnemyManager enemyManager;
 
-    bool isPlaced = false;
-    bool isSelected = false;
-    GameObject target;
+    protected bool isPlaced = false;
+    protected bool isSelected = false;
+    protected GameObject target;
     
     void Start()
     {
@@ -32,7 +32,7 @@ public class Tower : MonoBehaviour
         renderer.color = color;
 
         attackZone.SetActive(false);
-    StartCoroutine(AttackRoutine());
+        StartCoroutine(AttackRoutine());
         isPlaced = true;
 
     }
@@ -46,16 +46,13 @@ public class Tower : MonoBehaviour
             if (!isPlaced) continue;
             if (target == null) continue;
 
-            Enemy e = target.GetComponent<Enemy>();
-            if (e != null)
-            {
-                e.GetDamage(damage);
-            }
-            else
-            {
-                Debug.LogWarning("Tower tried to attack a target without an Enemy component.");
-            }
+            Attack();
         }
+    }
+
+    protected virtual void Attack()
+    {
+        
     }
 
     public void Select(bool shouldSelect) {

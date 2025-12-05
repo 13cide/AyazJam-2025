@@ -23,7 +23,7 @@ public class ControlsManager : MonoBehaviour
     private ControlMode currentMode = ControlMode.TowerPlacer;
     private Dictionary<Vector3Int, GameObject> occupiedTiles = new();
     GameObject newTower;
-    Tower selectedTower;
+    ButterflyTower selectedTower;
 
     public void SetMode(bool toggleValue)
     {
@@ -58,7 +58,7 @@ public class ControlsManager : MonoBehaviour
                 {
                     selectedTower.Select(false);
                 }
-                selectedTower = towerObj.GetComponent<Tower>();
+                selectedTower = towerObj.GetComponent<ButterflyTower>();
                 selectedTower.Select(true);
             }
             else
@@ -119,7 +119,7 @@ public class ControlsManager : MonoBehaviour
 
     private void PlaceTower(Vector3Int cellPos)
     {
-        newTower.GetComponent<Tower>().Placed();
+        newTower.GetComponent<ButterflyTower>().Placed();
         occupiedTiles.Add(cellPos, newTower);
 
     }

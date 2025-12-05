@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class ButterflyTower : Tower
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private GameObject potionPrefab;
+    protected override void Attack()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Attack();
+        Enemy e = target.GetComponent<Enemy>();
+        GameObject potionGO = Instantiate(potionPrefab, transform.position, Quaternion.identity);
+        Potion potion = potionGO.GetComponent<Potion>();
+        potion.Seek(e.transform);
     }
 }

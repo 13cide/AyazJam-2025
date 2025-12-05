@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnEnemy), 0f, 5f);
+        InvokeRepeating(nameof(SpawnEnemy), 0f, 1f);
     }
 
     void SpawnEnemy()

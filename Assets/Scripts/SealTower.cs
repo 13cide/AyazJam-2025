@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class SealTower : Tower
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Attack()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Attack();
+        Enemy e = target.GetComponent<Enemy>();
+        e.GetDamage(damage);
     }
 }
