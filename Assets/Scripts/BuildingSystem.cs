@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
+using System;
 
 public class BuildingSystem : MonoBehaviour
 {
     [Header("References")]
     public Grid grid;
     public Tilemap groundTilemap;
+    public Tilemap pathTilemap;
     public GameObject towerPrefab;
-    
-    [Header("Visuals")]
-    public GameObject previewGhost;
+
+
+    private Dictionary<Vector3Int, GameObject> occupiedTiles = new();
+    GameObject newTower;
 
     private void Update()
     {
@@ -21,37 +25,45 @@ public class BuildingSystem : MonoBehaviour
 
         Vector3 centerPosition = grid.GetCellCenterWorld(cellPosition);
 
-        // --- PREVIEW LOGIC ---
-        if (previewGhost != null)
+        if (Input.GetMouseButton(0)) 
         {
-            previewGhost.transform.position = centerPosition;
+            if (newTower == null)
+            {
+                newTower = Instantiate(towerPrefab, centerPosition, Quaternion.identity);
+            } else
+            {
+                newTower.transform.position = centerPosition;
+            }
         }
-
-        // --- PLACEMENT LOGIC ---
-        // Check if user clicked Left Mouse Button
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonUp(0))
         {
             if (IsValidPosition(cellPosition))
             {
-                PlaceTower(centerPosition, cellPosition);
+                PlaceTower(cellPosition);
             }
+            else
+            {
+                Destroy(newTower);
+            }
+            newTower = null;
         }
+
     }
 
     private bool IsValidPosition(Vector3Int cellPos)
     {
         if (EventSystem.current.IsPointerOverGameObject()) return false;
         if (!groundTilemap.HasTile(cellPos)) return false;
-
-        // Check C: Is there already a tower here? 
-        // (See "Occupancy Logic" section below for implementation)
+        if (occupiedTiles.ContainsKey(cellPos)) return false;
+        if (pathTilemap.HasTile(cellPos)) return false;
         
         return true; 
     }
 
-    private void PlaceTower(Vector3 position, Vector3Int cellPos)
+    private void PlaceTower(Vector3Int cellPos)
     {
-        Instantiate(towerPrefab, position, Quaternion.identity);
-        // Mark this cell as occupied (See below)
+        newTower.GetComponent<Tower>().Placed();
+        occupiedTiles.Add(cellPos, newTower);
+
     }
 }
