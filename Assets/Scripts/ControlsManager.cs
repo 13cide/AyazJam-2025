@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 
 public enum ControlMode
@@ -23,6 +24,9 @@ public class ControlsManager : MonoBehaviour
     private ControlMode currentMode = ControlMode.TowerPlacer;
     private Dictionary<Vector3Int, GameObject> occupiedTiles = new();
     [SerializeField] GameplayManager gameplayManager;
+    [SerializeField] GameObject runeAquiredUI;
+    [SerializeField] GameObject runeBuyUI;
+    [SerializeField] Button BuyRuneButton;
     GameObject newTower;
     Tower selectedTower;
 
@@ -32,6 +36,7 @@ public class ControlsManager : MonoBehaviour
         var entries = new System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<Vector3Int, GameObject>>(occupiedTiles);
         foreach (var kv in entries)
         {
+            if (kv.Value.GetComponent<Tower>().isTimeLocked) continue;
             Vector3 towerPos = kv.Value.transform.position;
             Destroy(kv.Value);
             GameObject towerObj = Instantiate(towerPrefab, towerPos, Quaternion.identity);
@@ -60,29 +65,40 @@ public class ControlsManager : MonoBehaviour
 
     void SelectorModeUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0)) return;
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+        
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos.z = 0f;
+
+        Vector3Int cellPosition = grid.WorldToCell(mouseWorldPos);
+
+        if (occupiedTiles.TryGetValue(cellPosition, out GameObject towerObj))
         {
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPos.z = 0f;
-
-            Vector3Int cellPosition = grid.WorldToCell(mouseWorldPos);
-
-            if (occupiedTiles.TryGetValue(cellPosition, out GameObject towerObj))
+            if (selectedTower != null)
             {
-                if (selectedTower != null)
-                {
-                    selectedTower.Select(false);
-                }
-                selectedTower = towerObj.GetComponent<Tower>();
-                selectedTower.Select(true);
+                selectedTower.Select(false);
+                runeBuyUI.SetActive(false);
+                runeAquiredUI.SetActive(false);
             }
-            else
+            selectedTower = towerObj.GetComponent<Tower>();
+            selectedTower.Select(true);
+
+            runeBuyUI.SetActive(!selectedTower.isTimeLocked);
+            runeAquiredUI.SetActive(selectedTower.isTimeLocked);
+            if (!selectedTower.isTimeLocked)
             {
-                if (selectedTower != null)
-                {
-                    selectedTower.Select(false);
-                    selectedTower = null;
-                }
+                BuyRuneButton.interactable = economyManager.CanAfford(20);
+            }
+        }
+        else
+        {
+            if (selectedTower != null)
+            {
+                selectedTower.Select(false);
+                selectedTower = null;
+                runeBuyUI.SetActive(false);
+                runeAquiredUI.SetActive(false);
             }
         }
     }
@@ -131,6 +147,18 @@ public class ControlsManager : MonoBehaviour
         if (pathTilemap.HasTile(cellPos)) return false;
         
         return true; 
+    }
+
+    public void BuyRune()
+    {
+        if (selectedTower == null) return;
+        if (selectedTower.isTimeLocked) return;
+        if (!economyManager.CanAfford(20)) return;
+
+        economyManager.TakeMoney(-20);
+        selectedTower.TimeLock();
+        runeBuyUI.SetActive(false);
+        runeAquiredUI.SetActive(true);
     }
 
     private void PlaceTower(Vector3Int cellPos)

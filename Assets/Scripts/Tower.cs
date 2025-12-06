@@ -8,6 +8,7 @@ public class Tower : MonoBehaviour
 
     [SerializeField] protected float attackRange;
     [SerializeField] protected GameObject attackZone;
+    [SerializeField] protected GameObject lockedSprite;
     [SerializeField] protected float attackCooldown = 1f;
     [SerializeField] protected int damage = 1;
     public int price;
@@ -16,6 +17,7 @@ public class Tower : MonoBehaviour
 
     protected bool isPlaced = false;
     protected bool isSelected = false;
+    public bool isTimeLocked = false;
     protected GameObject target;
     
     void Start()
@@ -86,6 +88,12 @@ public class Tower : MonoBehaviour
         {
             target = null;
         }
+    }
+
+    public void TimeLock()
+    {
+        isTimeLocked = true;
+        lockedSprite.SetActive(true);
     }
 
     void Update()
