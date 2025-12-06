@@ -108,6 +108,7 @@ MonoBehaviour:
   attackZone: {fileID: 5931468849237931467}
   attackCooldown: 2
   damage: 1
+  price: 10
   potionPrefab: {fileID: 6109405490056048010, guid: bdc36edeb58260e41a259096e492dea9, type: 3}
 --- !u!1 &5931468849237931467
 GameObject:

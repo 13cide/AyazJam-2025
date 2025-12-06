@@ -8,7 +8,7 @@ public class Potion : MonoBehaviour
     public float explosionRadius = 2f;
 
     [Header("Setup")]
-    public LayerMask enemyLayer;    // Optimization: Only look for enemies
+    public LayerMask enemyLayer;
 
     private Transform target;
 
@@ -36,7 +36,7 @@ public class Potion : MonoBehaviour
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-        transform.Rotate(0, 0, -10 * Time.deltaTime);
+        transform.Rotate(0, 0, -100 * Time.deltaTime);
     }
 
     void Explode()

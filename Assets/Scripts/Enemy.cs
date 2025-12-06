@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] int maxHp;
     int currentHp;
     [SerializeField] float speed;
+    [SerializeField] int moneyReward;
+    [SerializeField] int damageToBase = 10;
+    private EconomyManager economyManager;
     Vector2 nextPos;
     int posIndex = 0;
     Map map;
@@ -16,6 +19,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         map = GameObject.FindAnyObjectByType<Map>();
+        economyManager = GameObject.FindAnyObjectByType<EconomyManager>();
         currentHp = maxHp;
         GetNextPos();
     }
@@ -32,6 +36,7 @@ public class Enemy : MonoBehaviour
 
     void Death()
     {
+        economyManager.TakeMoney(moneyReward);
         enemyManager.enemies.Remove(nodeInManager);
         Destroy(gameObject);
         Debug.Log("Enemy " + gameObject.name + " destroyed");
@@ -40,9 +45,11 @@ public class Enemy : MonoBehaviour
     void GetNextPos()
     {
         nextPos = map.GetNextPosFrom(posIndex);
-        if (nextPos == Vector2.negativeInfinity)
+        if (nextPos.x == -1488f)
         {
-            // TODO delete Enemy and give dmg
+            enemyManager.enemies.Remove(nodeInManager);
+            economyManager.GetDamage(damageToBase);
+            Destroy(gameObject);
             return;
         }
         posIndex++;

@@ -199,6 +199,7 @@ MonoBehaviour:
   attackZone: {fileID: 3154620443749171505}
   attackCooldown: 1
   damage: 2
+  price: 10
 --- !u!114 &1921696319981281306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,3 +216,4 @@ MonoBehaviour:
   attackZone: {fileID: 3154620443749171505}
   attackCooldown: 1
   damage: 2
+  price: 0

@@ -10,6 +10,8 @@ public class Tower : MonoBehaviour
     [SerializeField] protected GameObject attackZone;
     [SerializeField] protected float attackCooldown = 1f;
     [SerializeField] protected int damage = 1;
+    public int price;
+    protected EconomyManager economyManager;
     protected EnemyManager enemyManager;
 
     protected bool isPlaced = false;
@@ -21,6 +23,7 @@ public class Tower : MonoBehaviour
         float range = (attackRange/transform.localScale.x)*2f;
         attackZone.transform.localScale = new Vector3(range, range, 1);
         enemyManager = GameObject.FindAnyObjectByType<EnemyManager>();
+        economyManager = GameObject.FindAnyObjectByType<EconomyManager>();
         InvokeRepeating(nameof(FindTarget), 0f, 0.25f);
     }
 

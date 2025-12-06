@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-using System;
-using UnityEngine.UI;
+
 
 public enum ControlMode
 {
@@ -19,6 +18,7 @@ public class ControlsManager : MonoBehaviour
     public Tilemap groundTilemap;
     public Tilemap pathTilemap;
     public GameObject towerPrefab;
+    public EconomyManager economyManager;
 
     private ControlMode currentMode = ControlMode.TowerPlacer;
     private Dictionary<Vector3Int, GameObject> occupiedTiles = new();
@@ -94,8 +94,9 @@ public class ControlsManager : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (IsValidPosition(cellPosition))
+            if (IsValidPosition(cellPosition) && economyManager.CanAfford(newTower.GetComponent<Tower>().price))
             {
+                economyManager.TakeMoney(-newTower.GetComponent<Tower>().price);
                 PlaceTower(cellPosition);
             }
             else

@@ -8,7 +8,8 @@ public class Map : MonoBehaviour
 
     internal Vector2 GetNextPosFrom(int posIndex)
     {
-        if (posIndex-1 == route.Count) return Vector2.negativeInfinity;
-       return route[posIndex+1].position;
+        if (posIndex >= route.Count - 1) 
+            return new Vector2(-1488, 0f);
+        return route[posIndex + 1].position;
     }
 }
