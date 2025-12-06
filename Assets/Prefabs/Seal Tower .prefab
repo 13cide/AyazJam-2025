@@ -100,7 +100,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2138365379900158845}
   - component: {fileID: 742711290527203472}
-  - component: {fileID: 2928094151172229807}
   - component: {fileID: 1921696319981281306}
   m_Layer: 0
   m_Name: 'Seal Tower '
@@ -183,23 +182,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2928094151172229807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4179043456752523101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22f78781016a24e9b13c954873a39a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Tower
-  attackRange: 4
-  attackZone: {fileID: 3154620443749171505}
-  attackCooldown: 1
-  damage: 2
-  price: 10
 --- !u!114 &1921696319981281306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,4 +198,4 @@ MonoBehaviour:
   attackZone: {fileID: 3154620443749171505}
   attackCooldown: 1
   damage: 2
-  price: 0
+  price: 10

@@ -22,8 +22,23 @@ public class ControlsManager : MonoBehaviour
 
     private ControlMode currentMode = ControlMode.TowerPlacer;
     private Dictionary<Vector3Int, GameObject> occupiedTiles = new();
+    [SerializeField] GameplayManager gameplayManager;
     GameObject newTower;
-    ButterflyTower selectedTower;
+    Tower selectedTower;
+
+    public void ChangeTowers(TowerType newTowerType) {
+        towerPrefab = newTowerType == TowerType.ButterflyTower ? gameplayManager.ButterflyTowerPrefab : gameplayManager.sealTowerPrefab;
+
+        var entries = new System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<Vector3Int, GameObject>>(occupiedTiles);
+        foreach (var kv in entries)
+        {
+            Vector3 towerPos = kv.Value.transform.position;
+            Destroy(kv.Value);
+            GameObject towerObj = Instantiate(towerPrefab, towerPos, Quaternion.identity);
+            occupiedTiles[kv.Key] = towerObj;
+            towerObj.GetComponent<Tower>().Placed();
+        }
+    }
 
     public void SetMode(bool toggleValue)
     {
@@ -58,7 +73,7 @@ public class ControlsManager : MonoBehaviour
                 {
                     selectedTower.Select(false);
                 }
-                selectedTower = towerObj.GetComponent<ButterflyTower>();
+                selectedTower = towerObj.GetComponent<Tower>();
                 selectedTower.Select(true);
             }
             else
@@ -120,7 +135,7 @@ public class ControlsManager : MonoBehaviour
 
     private void PlaceTower(Vector3Int cellPos)
     {
-        newTower.GetComponent<ButterflyTower>().Placed();
+        newTower.GetComponent<Tower>().Placed();
         occupiedTiles.Add(cellPos, newTower);
 
     }
