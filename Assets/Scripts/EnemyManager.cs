@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private static WaitForSeconds _waitForSeconds0_1 = new WaitForSeconds(0.1f);
+    private static WaitForSeconds _waitForSeconds0_3 = new WaitForSeconds(0.3f);
     public Transform enemySpawn;
     [SerializeField] GameplayManager gameplayManager;
     [SerializeField] GameObject enemyPrefab;
@@ -45,7 +45,7 @@ public class EnemyManager : MonoBehaviour
                 for (int j = 0; j < (int)wave.stages[i]; j++)
                 {
                     SpawnEnemy();
-                    yield return _waitForSeconds0_1;
+                    yield return _waitForSeconds0_3;
                 }
             }
         }
