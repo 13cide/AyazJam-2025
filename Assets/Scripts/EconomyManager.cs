@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -25,8 +26,7 @@ public class EconomyManager : MonoBehaviour
     {
         if (amount < 0 && math.abs(amount) > money)
         {
-            Debug.Log("Not enough money!");
-            return -1;
+            throw new Exception("Not enough money!");
         }
         money += amount;
         moneyText.text = money + "$";

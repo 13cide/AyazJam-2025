@@ -49,8 +49,6 @@ public class Potion : MonoBehaviour
             {
                 Enemy e = nearbyObject.GetComponent<Enemy>();
                 if (e != null) e.GetDamage(damage);
-                
-                Debug.Log("Hit " + nearbyObject.name);
             }
         }
 

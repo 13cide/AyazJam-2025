@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
     public void GetDamage(int damage)
     {
         currentHp -= damage;
-        Debug.Log("Enemy " + gameObject.name + " " + currentHp + "/" + maxHp);
         if (currentHp <= 0)
         {
             Death();
@@ -39,7 +38,6 @@ public class Enemy : MonoBehaviour
         economyManager.TakeMoney(moneyReward);
         enemyManager.enemies.Remove(nodeInManager);
         Destroy(gameObject);
-        Debug.Log("Enemy " + gameObject.name + " destroyed");
     }
 
     void GetNextPos()

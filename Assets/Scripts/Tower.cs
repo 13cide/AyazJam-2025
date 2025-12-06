@@ -81,7 +81,6 @@ public class Tower : MonoBehaviour
         if (shortestDistance <= attackRange)
         {
             target = nearestEnemy;
-            Debug.Log("Target acquired: " + target.name);
         }
         else
         {
