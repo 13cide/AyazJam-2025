@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Win32.SafeHandles;
+using TMPro;
 using UnityEngine;
 
 public enum TowerType
@@ -19,6 +20,12 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] ControlsManager controlsManager;
     TowerType currentTowerType = TowerType.None;
     [SerializeField] WaveScriptableObject[] waves;
+    [SerializeField] GameObject winUI;
+    [SerializeField] GameObject hintPanel;
+    [SerializeField] TMP_Text hintText;
+    [SerializeField] String[] hints;
+    
+    
 
     public void WaveFinished()
     {
@@ -38,12 +45,22 @@ public class GameplayManager : MonoBehaviour
     {
         if (currentWave >= waves.Length)
         {
-            Debug.Log("All waves completed!");
+            winUI.SetActive(true);
             return;
         }
         WaveScriptableObject wave = waves[currentWave];
         StartCoroutine(enemyManager.SpawnWaveRoutine(wave));
         currentWave++;
+        if (currentWave - 1 < hints.Length)
+        {
+            if (hints[currentWave - 1] == "")
+            {
+                hintPanel.SetActive(false);
+                return;
+            }
+            hintPanel.SetActive(true);
+            hintText.text = hints[currentWave - 1];
+        }
     }
 
 }

@@ -11,10 +11,12 @@ public class Potion : MonoBehaviour
     public LayerMask enemyLayer;
 
     private Transform target;
+    private Vector3 p;
 
     public void Seek(Transform _target)
     {
         target = _target;
+        p = target.position;
     }
 
     void Update()
@@ -25,12 +27,12 @@ public class Potion : MonoBehaviour
             return;
         }
 
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = p - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
         if (dir.magnitude <= distanceThisFrame)
         {
-            transform.position = target.position;
+            transform.position = p;
             Explode();
             return;
         }
