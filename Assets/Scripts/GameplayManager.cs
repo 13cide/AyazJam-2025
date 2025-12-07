@@ -26,6 +26,9 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] GameObject hintPanel;
     [SerializeField] TMP_Text hintText;
     [SerializeField] String[] hints;
+
+    [SerializeField] protected AudioClip ound;
+    [SerializeField] protected AudioSource audioSource;
     
     
 
@@ -34,6 +37,7 @@ public class GameplayManager : MonoBehaviour
         Anim.SetActive(true);
         choiceUI.SetActive(true);   
         StartCoroutine(PlayAnim());
+        audioSource.PlayOneShot(ound);
     }
 
     IEnumerator PlayAnim()

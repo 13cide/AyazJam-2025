@@ -7,5 +7,6 @@ public class SealTower : Tower
         base.Attack();
         Enemy e = target.GetComponent<Enemy>();
         e.GetDamage(damage);
+        audioSource.PlayOneShot(attackound);
     }
 }

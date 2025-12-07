@@ -10,5 +10,6 @@ public class ButterflyTower : Tower
         GameObject potionGO = Instantiate(potionPrefab, transform.position, Quaternion.identity);
         Potion potion = potionGO.GetComponent<Potion>();
         potion.Seek(e.transform);
+        audioSource.PlayOneShot(attackound);
     }
 }

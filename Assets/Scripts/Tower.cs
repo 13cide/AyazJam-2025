@@ -11,6 +11,10 @@ public class Tower : MonoBehaviour
     [SerializeField] protected GameObject lockedSprite;
     [SerializeField] protected float attackCooldown = 1f;
     [SerializeField] protected int damage = 1;
+    [SerializeField] protected AudioClip attackound;
+    [SerializeField] protected AudioClip builtound;
+    [SerializeField] protected AudioClip runeond;
+    [SerializeField] protected AudioSource audioSource;
     public int price;
     protected EconomyManager economyManager;
     protected EnemyManager enemyManager;
@@ -39,6 +43,7 @@ public class Tower : MonoBehaviour
         attackZone.SetActive(false);
         StartCoroutine(AttackRoutine());
         isPlaced = true;
+        audioSource.PlayOneShot(builtound);
 
     }
 
@@ -94,6 +99,7 @@ public class Tower : MonoBehaviour
     {
         isTimeLocked = true;
         lockedSprite.SetActive(true);
+        audioSource.PlayOneShot(runeond);
     }
 
     void Update()

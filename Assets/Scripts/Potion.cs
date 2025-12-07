@@ -12,6 +12,8 @@ public class Potion : MonoBehaviour
 
     private Transform target;
     private Vector3 p;
+    [SerializeField] protected AudioClip ound;
+    [SerializeField] protected AudioSource audioSource;
 
     public void Seek(Transform _target)
     {

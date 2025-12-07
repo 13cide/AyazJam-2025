@@ -157,6 +157,7 @@ MonoBehaviour:
   moneyReward: 30
   damageToBase: 100
   hpBar: {fileID: 3421652641430358175}
+  k: {fileID: 8157537352528486439, guid: ad354b20139d04048a11d7d4891d20d7, type: 3}
 --- !u!1 &3216588959424996186
 GameObject:
   m_ObjectHideFlags: 0
