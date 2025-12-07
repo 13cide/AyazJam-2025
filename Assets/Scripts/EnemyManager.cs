@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -34,12 +35,29 @@ public class EnemyManager : MonoBehaviour
         enemyScript.enemyManager = this;
     }
 
+    public void EndWave()
+    {
+        isSpawnFinished = true;
+        StartCoroutine(deleteMobs());
+    }
+
+    IEnumerator deleteMobs()
+    {
+        yield return new WaitForSeconds(0.1f);
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        enemies.Clear();
+    }
+
     internal IEnumerator SpawnWaveRoutine(WaveScriptableObject wave)
     {
         isSpawnFinished = false;
         isWaveStarted = true;
         for (int i = 0; i < wave.stages.Length; i++)
         {
+            if (isSpawnFinished) break;
             if (i % 2 == 0)
             {
                 yield return new WaitForSeconds(wave.stages[i]);

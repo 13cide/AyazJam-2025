@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Death()
+    public void Death()
     {
         economyManager.TakeMoney(moneyReward);
         enemyManager.enemies.Remove(nodeInManager);
