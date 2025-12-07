@@ -200,7 +200,7 @@ MonoBehaviour:
   lockedSprite: {fileID: 5818452919796153142}
   attackCooldown: 1
   damage: 5
-  price: 10
+  price: 5
   isTimeLocked: 0
 --- !u!1 &5818452919796153142
 GameObject:

@@ -156,9 +156,9 @@ public class ControlsManager : MonoBehaviour
     {
         if (selectedTower == null) return;
         if (selectedTower.isTimeLocked) return;
-        if (!economyManager.CanAfford(20)) return;
+        if (!economyManager.CanAfford(10)) return;
 
-        economyManager.TakeMoney(-20);
+        economyManager.TakeMoney(-10);
         selectedTower.TimeLock();
         runeBuyUI.SetActive(false);
         runeAquiredUI.SetActive(true);
