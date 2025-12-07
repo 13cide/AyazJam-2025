@@ -27,6 +27,7 @@ public class ControlsManager : MonoBehaviour
     [SerializeField] GameObject runeAquiredUI;
     [SerializeField] GameObject runeBuyUI;
     [SerializeField] Button BuyRuneButton;
+    [SerializeField] KeyCode placingKey = KeyCode.P;
     GameObject newTower;
     Tower selectedTower;
 
@@ -45,13 +46,17 @@ public class ControlsManager : MonoBehaviour
         }
     }
 
-    public void SetMode(bool toggleValue)
-    {
-        currentMode = toggleValue ? ControlMode.TowerPlacer : ControlMode.Selector;
-    }
-
     void Update()
     {
+        if (Input.GetKeyUp(placingKey))
+        {
+            if (currentMode == ControlMode.TowerPlacer && newTower != null)
+            {
+                Destroy(newTower);
+                newTower = null;
+            }
+            currentMode = currentMode == ControlMode.Selector ? ControlMode.TowerPlacer : ControlMode.Selector;
+        }
         switch (currentMode)
         {
             case ControlMode.Selector:
@@ -112,16 +117,13 @@ public class ControlsManager : MonoBehaviour
 
         Vector3 centerPosition = grid.GetCellCenterWorld(cellPosition);
 
-        if (Input.GetMouseButton(0)) 
+        if (newTower == null)
         {
-            if (newTower == null)
-            {
-                newTower = Instantiate(towerPrefab, centerPosition, Quaternion.identity);
-            } else
-            {
-                newTower.transform.position = centerPosition;
-                newTower.SetActive(IsValidPosition(cellPosition));
-            }
+            newTower = Instantiate(towerPrefab, centerPosition, Quaternion.identity);
+        } else
+        {
+            newTower.transform.position = centerPosition;
+            newTower.SetActive(IsValidPosition(cellPosition));
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -135,6 +137,7 @@ public class ControlsManager : MonoBehaviour
                 Destroy(newTower);
             }
             newTower = null;
+            currentMode = ControlMode.Selector;
         }
     }
 
