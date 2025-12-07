@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Microsoft.Win32.SafeHandles;
 using TMPro;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class GameplayManager : MonoBehaviour
     TowerType currentTowerType = TowerType.None;
     [SerializeField] WaveScriptableObject[] waves;
     [SerializeField] GameObject winUI;
+    [SerializeField] GameObject Anim;
     [SerializeField] GameObject hintPanel;
     [SerializeField] TMP_Text hintText;
     [SerializeField] String[] hints;
@@ -29,7 +31,15 @@ public class GameplayManager : MonoBehaviour
 
     public void WaveFinished()
     {
-        choiceUI.SetActive(true);
+        Anim.SetActive(true);
+        choiceUI.SetActive(true);   
+        StartCoroutine(PlayAnim());
+    }
+
+    IEnumerator PlayAnim()
+    {
+        yield return new WaitForSeconds(3.5f);
+        Anim.SetActive(false);
     }
 
     public void Choosing(bool isSeal)
