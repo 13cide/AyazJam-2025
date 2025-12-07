@@ -151,6 +151,16 @@ MonoBehaviour:
   enemySpawn: {fileID: 1141892940}
   gameplayManager: {fileID: 1324770172}
   enemyPrefab: {fileID: 1653356516942866907, guid: 271ff83d55938134a9096092d5606238, type: 3}
+  faces:
+  - {fileID: -855298285791758126, guid: c4749d3250fdfc444aa3f98b60e8f948, type: 3}
+  - {fileID: 6937817954938267909, guid: d6b34b73be177c34890943212bfd8354, type: 3}
+  - {fileID: -6470460504253458178, guid: ea495da8e5056ba428ab63cd32d7ec6a, type: 3}
+  - {fileID: -4178046375966092550, guid: 7675c4a86c18bc945ba6a7bec2b17592, type: 3}
+  - {fileID: 4130640169021434097, guid: d13f6a03fe48ce74c84d4f079b1b85d3, type: 3}
+  - {fileID: 3465286685962602723, guid: 3b24dbf6aef46fe44bc127b062d2b871, type: 3}
+  - {fileID: 7028616704906629411, guid: 6957473e680477144bc69aa7c6cf30d8, type: 3}
+  - {fileID: 8288426215254106694, guid: fbbbce4e1c88181498edcc893b9943a1, type: 3}
+  - {fileID: 4113829005332862926, guid: 4576e53913fe4674daa6b51d8f9af708, type: 3}
 --- !u!4 &80309654
 Transform:
   m_ObjectHideFlags: 0
@@ -2092,7 +2102,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.003937006, y: 0.003937006, z: 0}
+  m_ChunkCullingBounds: {x: 0.007936537, y: 0.007936537, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -3910,7 +3920,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.003937006, y: 0.003937006, z: 0}
+  m_ChunkCullingBounds: {x: 0.007936537, y: 0.007936537, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0

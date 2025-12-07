@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] GameplayManager gameplayManager;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] public LinkedList<GameObject> enemies = new();
+    [SerializeField] private Sprite[] faces;
     bool isSpawnFinished = true;
     bool isWaveStarted = false;
 
@@ -25,6 +26,7 @@ public class EnemyManager : MonoBehaviour
     void SpawnEnemy()
     {
         GameObject enemy = Instantiate(enemyPrefab, enemySpawn.position, Quaternion.identity);
+        enemy.GetComponent<SpriteRenderer>().sprite = faces[UnityEngine.Random.Range(0, faces.Length)];
         LinkedListNode<GameObject> node = enemies.AddLast(enemy);
         Enemy enemyScript = enemy.GetComponent<Enemy>();
         enemyScript.nodeInManager = node;
