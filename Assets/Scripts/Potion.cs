@@ -36,7 +36,7 @@ public class Potion : MonoBehaviour
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-        transform.Rotate(0, 0, -100 * Time.deltaTime);
+        transform.Rotate(0, 0, -700 * Time.deltaTime);
     }
 
     void Explode()
