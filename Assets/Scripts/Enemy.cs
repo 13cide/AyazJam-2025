@@ -6,8 +6,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public LinkedListNode<GameObject> nodeInManager;
     [HideInInspector] public EnemyManager enemyManager;
 
-    [SerializeField] int maxHp;
-    int currentHp;
+    [SerializeField] protected int maxHp;
+    protected int currentHp;
     [SerializeField] float speed;
     [SerializeField] int moneyReward;
     [SerializeField] int damageToBase = 10;
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
         GetNextPos();
     }
 
-    public void GetDamage(int damage)
+    public virtual void GetDamage(int damage)
     {
         currentHp -= damage;
         if (currentHp <= 0)

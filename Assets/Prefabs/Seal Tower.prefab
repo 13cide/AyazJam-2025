@@ -198,7 +198,7 @@ MonoBehaviour:
   attackRange: 4
   attackZone: {fileID: 3154620443749171505}
   lockedSprite: {fileID: 5818452919796153142}
-  attackCooldown: 1
+  attackCooldown: 1.5
   damage: 5
   price: 5
   isTimeLocked: 0

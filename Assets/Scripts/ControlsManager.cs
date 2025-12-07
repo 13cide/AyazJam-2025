@@ -21,7 +21,7 @@ public class ControlsManager : MonoBehaviour
     public GameObject towerPrefab;
     public EconomyManager economyManager;
 
-    private ControlMode currentMode = ControlMode.TowerPlacer;
+    private ControlMode currentMode = ControlMode.Selector;
     private Dictionary<Vector3Int, GameObject> occupiedTiles = new();
     [SerializeField] GameplayManager gameplayManager;
     [SerializeField] GameObject runeAquiredUI;
