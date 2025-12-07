@@ -7,7 +7,7 @@ public class EconomyManager : MonoBehaviour
 {
     public int maxHp;
     int currentHp;
-    private int money = 100;
+    public int money = 20;
     [SerializeField] EnemyManager enemyManager;
     [SerializeField] TMP_Text hpText;
     [SerializeField] TMP_Text moneyText;

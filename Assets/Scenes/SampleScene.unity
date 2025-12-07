@@ -2041,6 +2041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
   maxHp: 100
+  money: 30
   enemyManager: {fileID: 80309653}
   hpText: {fileID: 547364873}
   moneyText: {fileID: 1643134231}
@@ -5791,13 +5792,32 @@ MonoBehaviour:
   ButterflyTowerPrefab: {fileID: 5686779107410919138, guid: 5f2abece326d1a14b9463178fc340795, type: 3}
   controlsManager: {fileID: 1064607268}
   waves:
-  - {fileID: 11400000, guid: a0bba7dc9ae2f094a9f3d7290092d0fd, type: 2}
   - {fileID: 11400000, guid: bc1c20d0b7ea0c044abfe22ccc778cf0, type: 2}
+  - {fileID: 11400000, guid: a0bba7dc9ae2f094a9f3d7290092d0fd, type: 2}
   - {fileID: 11400000, guid: 4187c66ca2a87d94290b24231c50b807, type: 2}
+  - {fileID: 11400000, guid: bf96d205281d4cb48b1159196e53f969, type: 2}
+  - {fileID: 11400000, guid: a77cdbb4a8757c64ebdd181a9a4a1796, type: 2}
+  - {fileID: 11400000, guid: 557254be6bb4bb646a6f6f98cc6a35d5, type: 2}
   winUI: {fileID: 111783862}
   hintPanel: {fileID: 242874949}
   hintText: {fileID: 976983973}
-  hints: []
+  hints:
+  - In next wave you will encounter fat boss enemy. He has lots of hp. You will not
+    be able to pass him with butterfly tower. Fortunatly for you i have bringed you
+    <b>back in time!</b> Here, in the past before first round you can choose again
+    and all of the towers you have put previously also will change like you always
+    was placing them.
+  - You have defeated him! Remarkable! But dont celebrate early, next wave will not
+    be easy. <b>You will not see a boss, but the amount of normal enemies will be
+    huge.</b> Think what tower you need for that.
+  - Congratulations! Next wave that I have prepared isn`t hard, just one boss. But
+    after one wave you will face boss at the same time with lots and lots of enemies.
+    to pass it you will need <b>both</b> of your towers. To make it happen you need
+    to buy <b>time rune</b> it is expensive but it can freeze tower in time so it
+    will not be changed again after time travel.
+  - 
+  - 
+  - 
 --- !u!4 &1324770173
 Transform:
   m_ObjectHideFlags: 0

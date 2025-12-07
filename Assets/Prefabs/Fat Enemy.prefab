@@ -105,9 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   enemyManager: {fileID: 0}
-  maxHp: 90
-  speed: 8
-  moneyReward: 10
+  maxHp: 50
+  speed: 0.6
+  moneyReward: 30
   damageToBase: 100
 --- !u!61 &1136225575090790293
 BoxCollider2D:

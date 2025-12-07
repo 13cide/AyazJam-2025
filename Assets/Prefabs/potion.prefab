@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Potion
   speed: 3
   damage: 1
-  explosionRadius: 2
+  explosionRadius: 1.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64

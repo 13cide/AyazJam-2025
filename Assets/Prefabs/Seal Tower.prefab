@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 742711290527203472}
   - component: {fileID: 1921696319981281306}
   m_Layer: 0
-  m_Name: 'Seal Tower '
+  m_Name: Seal Tower
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   attackZone: {fileID: 3154620443749171505}
   lockedSprite: {fileID: 5818452919796153142}
   attackCooldown: 1
-  damage: 2
+  damage: 5
   price: 10
   isTimeLocked: 0
 --- !u!1 &5818452919796153142
