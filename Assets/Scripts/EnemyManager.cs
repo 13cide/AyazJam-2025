@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     public Transform enemySpawn;
     [SerializeField] GameplayManager gameplayManager;
     [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject fatEnemyPrefab;
     [SerializeField] public LinkedList<GameObject> enemies = new();
     [SerializeField] private Sprite[] faces;
     bool isSpawnFinished = true;
@@ -23,10 +24,10 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(bool isFat = false)
     {
-        GameObject enemy = Instantiate(enemyPrefab, enemySpawn.position, Quaternion.identity);
-        enemy.GetComponent<SpriteRenderer>().sprite = faces[UnityEngine.Random.Range(0, faces.Length)];
+        GameObject enemy = Instantiate(isFat ? fatEnemyPrefab : enemyPrefab, enemySpawn.position, Quaternion.identity);
+        if (!isFat) enemy.GetComponent<SpriteRenderer>().sprite = faces[UnityEngine.Random.Range(0, faces.Length)];
         LinkedListNode<GameObject> node = enemies.AddLast(enemy);
         Enemy enemyScript = enemy.GetComponent<Enemy>();
         enemyScript.nodeInManager = node;
@@ -44,11 +45,20 @@ public class EnemyManager : MonoBehaviour
                 yield return new WaitForSeconds(wave.stages[i]);
             } else
             {
-                for (int j = 0; j < (int)wave.stages[i]; j++)
+                if (wave.stages[i] == -13)
                 {
-                    SpawnEnemy();
+                    SpawnEnemy(true);
                     yield return _waitForSeconds0_3;
                 }
+                else
+                {
+                    for (int j = 0; j < (int)wave.stages[i]; j++)
+                    {
+                        SpawnEnemy();
+                        yield return _waitForSeconds0_3;
+                    }
+                }
+                
             }
         }
         isSpawnFinished = true;

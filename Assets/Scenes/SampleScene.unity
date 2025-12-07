@@ -423,6 +423,7 @@ MonoBehaviour:
   enemySpawn: {fileID: 1141892940}
   gameplayManager: {fileID: 1324770172}
   enemyPrefab: {fileID: 1653356516942866907, guid: 271ff83d55938134a9096092d5606238, type: 3}
+  fatEnemyPrefab: {fileID: 1653356516942866907, guid: 80e515d4b925fbc4ba5ce1574e3ab295, type: 3}
   faces:
   - {fileID: -855298285791758126, guid: c4749d3250fdfc444aa3f98b60e8f948, type: 3}
   - {fileID: 6937817954938267909, guid: d6b34b73be177c34890943212bfd8354, type: 3}
@@ -431,7 +432,6 @@ MonoBehaviour:
   - {fileID: 4130640169021434097, guid: d13f6a03fe48ce74c84d4f079b1b85d3, type: 3}
   - {fileID: 3465286685962602723, guid: 3b24dbf6aef46fe44bc127b062d2b871, type: 3}
   - {fileID: 7028616704906629411, guid: 6957473e680477144bc69aa7c6cf30d8, type: 3}
-  - {fileID: 8288426215254106694, guid: fbbbce4e1c88181498edcc893b9943a1, type: 3}
   - {fileID: 4113829005332862926, guid: 4576e53913fe4674daa6b51d8f9af708, type: 3}
 --- !u!4 &80309654
 Transform:
@@ -5789,6 +5789,7 @@ MonoBehaviour:
   ButterflyTowerPrefab: {fileID: 5686779107410919138, guid: 5f2abece326d1a14b9463178fc340795, type: 3}
   controlsManager: {fileID: 1064607268}
   waves:
+  - {fileID: 11400000, guid: a0bba7dc9ae2f094a9f3d7290092d0fd, type: 2}
   - {fileID: 11400000, guid: bc1c20d0b7ea0c044abfe22ccc778cf0, type: 2}
   - {fileID: 11400000, guid: 4187c66ca2a87d94290b24231c50b807, type: 2}
   winUI: {fileID: 111783862}
