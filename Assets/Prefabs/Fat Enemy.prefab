@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   enemyManager: {fileID: 0}
   maxHp: 90
-  speed: 0.7
+  speed: 8
   moneyReward: 10
   damageToBase: 100
 --- !u!61 &1136225575090790293

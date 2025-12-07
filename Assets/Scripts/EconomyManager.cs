@@ -8,8 +8,10 @@ public class EconomyManager : MonoBehaviour
     public int maxHp;
     int currentHp;
     private int money = 100;
+    [SerializeField] EnemyManager enemyManager;
     [SerializeField] TMP_Text hpText;
     [SerializeField] TMP_Text moneyText;
+    [SerializeField] GameObject loseUI;
 
     void Start()
     {
@@ -34,9 +36,11 @@ public class EconomyManager : MonoBehaviour
     } 
     public void GetDamage(int amount)
     {
-        if (amount > currentHp)
+        if (amount >= currentHp)
         {
-            Debug.Log("You are dead!");
+            loseUI.SetActive(true);
+            enemyManager.enabled = false;
+            return;
         }
         currentHp -= amount;
         hpText.text = currentHp.ToString();
